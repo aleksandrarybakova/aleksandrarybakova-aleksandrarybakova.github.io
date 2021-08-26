@@ -1,0 +1,44 @@
+.main-modal{
+    height: 90%;
+    width: 90%;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: 3%;
+    overflow-y: clip!important;
+}
+
+
+.main-modal__close{
+    padding: 10px!important;
+}
+
+form .nice-select .list{
+    height: 205px;
+}
+
+.main-modal textarea{
+    text-decoration: none;
+}
+
+.main-modal__submit{
+    width: 80%!important;
+    margin-left: 10%;
+    margin-bottom: 1em;
+   
+}
+
+
+@media (min-width: 321px) and (max-width: 768px){
+    .main-modal .modal-content{
+        height: 100vh;
+    }
+
+    .main-modal__close>span{
+        width: 25px!important;
+        height: 25px!important;
+    }
+
+    .main-modal .current{
+        font-size: 16px;
+    }
+}
