@@ -46,22 +46,43 @@
 
         function saveChanges() {
             const parts = document.querySelectorAll('.day__plan--part');
+            const data = {};
             parts.forEach((part, index) => {
-                localStorage.setItem(`dayPart${index}`, part.innerText);
+                data[`dayPart${index}`] = part.innerText;
             });
-            alert('Changes saved!');
-            toggleEdit(); // Disable editing after saving
+
+            fetch('/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                toggleEdit(); // Disable editing after saving
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
 
         // Load saved changes on page load
         window.onload = function() {
-            const parts = document.querySelectorAll('.day__plan--part');
-            parts.forEach((part, index) => {
-                const savedContent = localStorage.getItem(`dayPart${index}`);
-                if (savedContent) {
-                    part.innerText = savedContent;
-                }
-            });
+            fetch('/load')
+                .then(response => response.json())
+                .then(data => {
+                    const parts = document.querySelectorAll('.day__plan--part');
+                    parts.forEach((part, index) => {
+                        if (data[`dayPart${index}`]) {
+                            part.innerText = data[`dayPart${index}`];
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading data:', error);
+                });
         };
     </script>
 </body>
