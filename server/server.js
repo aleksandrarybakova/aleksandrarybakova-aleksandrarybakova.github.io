@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use environment variable for port
 
 // Middleware
 app.use(bodyParser.json());
@@ -28,7 +28,7 @@ app.post('/save', (req, res) => {
     });
 });
 
-// Start the server
-app.listen(PORT, () => {
+// Start the server and listen on all interfaces
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
