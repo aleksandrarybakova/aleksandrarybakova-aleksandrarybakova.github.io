@@ -15,41 +15,65 @@
 
 .wrapper{
     height: 100vh;
-}
-
-.wrapper[view="mess"] .profile
-{
-    display: none;
-}
-
-.wrapper[view="prof"] .mess_list, .wrapper[view="prof"] .correspondence
-{
-    display: none;
-}
-
-.mess_list{
-    width: 30%;
-    border-right: solid 2px #d8d9de;
     flex-direction: column;
 }
-
-.correspondence{
-    width: 70%;
+.header{
+    height: 7%;
+}
+.week{
+    flex-direction: column;
+    height: 85%;
 }
 
-.mess_list__header, .mess_list__category, .mess_list__search{
-    border-bottom: solid 2px #f5f5f5;
+.day{
+    
+    width: 100%;
+    height: 14.2%;
+    border: 1px solid #ccc;
 }
-
-.mess_list__header{
-    height: 50px;
-}
-.mess_list__category{
-    height: 40px;
-}
-.mess_list__search{
-    height: 50px;
-}
-.mess_list__list{
+.header .day{
     height: 100%;
+}
+.day__name{
+    width: 20%;
+    border-right: 3px solid #ccc;
+    font-size: 30px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.header .day .day__name{
+    font-size: 20px;
+}
+.day.weekend .day__name{
+    color: red;
+}
+.day__plan{
+    width: 100%;
+    height: 100%;
+}
+
+.day__plan--part{
+    width: 50%;
+    height: 100%;
+    font-size: 30px;
+}
+.day__plan--part:first-child{
+    border-right: 1px solid #ccc;
+}
+.footer{
+    justify-content: space-between;
+    height: 8%;
+}
+.footer__save{
+    width: 30%;
+    height: 100%;
+    border-radius: 10%;
+    background-color: red;
+}
+.footer__change{
+    width: 30%;
+    height: 100%;
+    border-radius: 10%;
+    background-color: green;
 }

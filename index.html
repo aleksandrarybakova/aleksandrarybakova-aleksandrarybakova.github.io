@@ -7,15 +7,51 @@
     <title>Chat</title>
 </head>
 <body>
-    <div class="wrapper d-flex" view="mess">
-        <div class="mess_list d-flex">
-            <div class="mess_list__header"></div>
-            <div class="mess_list__category"></div>
-            <div class="mess_list__search"></div>
-            <div class="mess_list__list"></div>
+    <div class="wrapper d-flex" >
+        <div class="header  d-flex">
+            <div class="day d-flex">
+                <div class="day__name d-flex centred">день</div> 
+                <div class="day__plan d-flex">
+                    <div class="day__plan--part d-flex centred" contentEditable="false">утро</div>
+                    <div class="day__plan--part d-flex centred" contentEditable="false">вечер</div>
+                </div>
+            </div>
         </div>
-        <div class="correspondence"></div>
-        <div class="profile"></div>
+        <div class="week d-flex">
+            <div class="day d-flex">
+                <div class="day__name d-flex centred">пн</div>
+                <div class="day__plan d-flex">
+                    <div class="day__plan--part d-flex centred" contentEditable="false">14.00 ghgjgkh</div>
+                    <div class="day__plan--part d-flex centred" contentEditable="false">18.00 hjhjkkj</div>
+                </div>
+            </div>
+            <!-- Repeat for other days -->
+        </div>
+        <div class="footer d-flex">
+            <div class="footer__last_change">изменено 12.12.24</div>
+            <div class="footer__change d-flex centred" onclick="toggleEdit()">ред</div>
+            <div class="footer__save d-flex centred" onclick="saveChanges()">save</div>
+        </div>
     </div>
+    <script>
+        let isEditable = false;
+
+        function toggleEdit() {
+            const parts = document.querySelectorAll('.day__plan--part');
+            isEditable = !isEditable;
+            parts.forEach(part => {
+                part.contentEditable = isEditable;
+            });
+        }
+
+        function saveChanges() {
+            const parts = document.querySelectorAll('.day__plan--part');
+            parts.forEach((part, index) => {
+                localStorage.setItem(`dayPart${index}`, part.innerText);
+            });
+            alert('Changes saved!');
+            toggleEdit(); // Disable editing after saving
+        }
+    </script>
 </body>
 </html>
